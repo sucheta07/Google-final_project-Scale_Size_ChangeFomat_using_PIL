@@ -1,0 +1,22 @@
+import os
+from PIL import Image
+
+# defining the input and output directories
+input_dir = "images/"
+output_dir = "/opt/icons/"
+
+# getting file name from the input directory using os.listdir() function which will return the file names of given directory anf using 'for loop' for iteration of file names
+for file_name in os.listdir(input_dir) :
+  
+  # now checking the '.DOS_Store' file exits in the input directory or not 
+  # ".DOS_Store" - Short form of 'Desktop Services Store'
+  if file_name != ".DOS_Store" :
+    
+    # opening the images inside the folder and storing in 'img' variable
+    img = Image.open(os.path.join(input_dir, file_name))
+    
+    # applyig the changes as requi, re in the images ))
+    img = img.rotate(-90).resize((128, 128)).convert("RGB")
+    
+    # storing the changed images in output directory and changing the ends of file name by '.jpeg'
+    img.save(os.path.join(output_dir, file_name+'.jpeg'))
